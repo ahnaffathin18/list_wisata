@@ -139,15 +139,15 @@ class _UserListState extends State<UserList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('GFG User List'),
+        title: Text('daftar destinasi wisata'),
         backgroundColor: Colors.lightGreen,
       ),
       body: ListView.builder(
         itemCount: _users.length,
         itemBuilder: (context, index) {
           return ListTile(
-            title: Text(_users[index].username),
-            subtitle: Text(_users[index].email),
+            judul: Text(_users[index].judul),
+            deskripsi: Text(_users[index].deskripsi),
           );
         },
       ),

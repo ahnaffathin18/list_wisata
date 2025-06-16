@@ -15,47 +15,46 @@ class DatabaseHelper {
 
   Future<Database> initDb() async {
     String databasesPath = await getDatabasesPath();
-    String path = join(databasesPath, 'geeksforgeeks.db');
+    String path = join(databasesPath, 'destinasi.db');
 
     return await openDatabase(path, version: 1, onCreate: _onCreate);
   }
 
   Future _onCreate(Database db, int version) async {
     await db.execute('''
-      CREATE TABLE gfg_users (
+      CREATE TABLE list_destinasi (
         id INTEGER PRIMARY KEY,
-        username TEXT,
-        email TEXT
+        judul TEXT,
+        deskripsi TEXT
       )
     ''');
   }
 
   Future<int> insertUser(User user) async {
     Database db = await instance.db;
-    return await db.insert('gfg_users', user.toMap());
+    return await db.insert('list_destinasi', user.toMap());
   }
 
   Future<List<Map<String, dynamic>>> queryAllUsers() async {
     Database db = await instance.db;
-    return await db.query('gfg_users');
+    return await db.query('list_destinasi');
   }
 
   Future<int> updateUser(User user) async {
     Database db = await instance.db;
-    return await db.update('gfg_users', user.toMap(), where: 'id = ?', whereArgs: [user.id]);
+    return await db.update('list_destinasi', user.toMap(), where: 'id = ?', whereArgs: [user.id]);
   }
 
   Future<int> deleteUser(int id) async {
     Database db = await instance.db;
-    return await db.delete('gfg_users', where: 'id = ?', whereArgs: [id]);
+    return await db.delete('list_destinasi', where: 'id = ?', whereArgs: [id]);
   }
 
   Future<void> initializeUsers() async {
     List<User> usersToAdd = [
-      User(username: 'John', email: 'john@example.com'),
-      User(username: 'Jane', email: 'jane@example.com'),
-      User(username: 'Alice', email: 'alice@example.com'),
-      User(username: 'Bob', email: 'bob@example.com'),
+      User(judul: 'candi borobudur', deskripsi: 'candi tua'),
+      
+ 
     ];
 
     for (User user in usersToAdd) {
